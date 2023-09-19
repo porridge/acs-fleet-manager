@@ -28,6 +28,7 @@ jobs:
     - name: Canonicalize the commit ID
       run: |
         set -e
+        git branch
         echo "commit_hash=$(git rev-parse '${{ inputs.commit }}')" >> "$GITHUB_ENV"
 
     - name: Create Release Candidate branch
