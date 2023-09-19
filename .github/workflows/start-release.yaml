@@ -42,3 +42,7 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         FROM_BRANCH: 'rc-${{ inputs.release_version }}'
         TO_BRANCH: 'stage'
+
+    - name: Display PR URL
+      run: |
+        echo 'PR created: ${{ steps.pull.outputs.PULL_REQUEST_URL }}' >> "$GITHUB_STEP_SUMMARY"
