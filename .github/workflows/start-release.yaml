@@ -27,9 +27,7 @@ jobs:
     # action-create-branch does not accept symbolic refs, so we need to parse it here.
     - name: Canonicalize the commit ID
       run: |
-        set -e
-        git branch
-        echo "commit_hash=$(git rev-parse '${{ inputs.commit }}')" >> "$GITHUB_ENV"
+        echo "commit_hash=$(git rev-parse 'remotes/origin/${{ inputs.commit }}' || git rev-parse '${{ inputs.commit }}')" >> "$GITHUB_ENV"
 
     - name: Create Release Candidate branch
       uses: peterjgrainger/action-create-branch@v2.3.0
